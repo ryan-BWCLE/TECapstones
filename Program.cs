@@ -1,29 +1,19 @@
-﻿using Capstone.Classes;
-using Capstone.UI;
-using MenuFramework;
-
-using System;
-using System.Collections;
+﻿using System;
 using System.Collections.Generic;
-using System.IO;
+using TenmoClient.Data;
+using TenmoClient.Views;
 
-namespace Capstone
+namespace TenmoClient
 {
     class Program
     {
+
         static void Main(string[] args)
         {
-            VMInventoryLoader vMInventoryLoader = new VMInventoryLoader();
-            vMInventoryLoader.StockProducts();
+            AuthService authService = new AuthService();
+            new LoginRegisterMenu(authService).Show();
 
-            IEnumerable<Product> products = vMInventoryLoader.StockProducts();
-
-            VendingMachine vendingMachine = new VendingMachine(products);
-
-            MainMenu mainMenu = new MainMenu(vendingMachine);
-
-            
+            Console.WriteLine("\r\nThank you for using TEnmo!!!\r\n");
         }
-
     }
 }
