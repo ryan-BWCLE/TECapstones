@@ -1,19 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
-using TenmoClient.Data;
-using TenmoClient.Views;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 
-namespace TenmoClient
+namespace TenmoServer
 {
-    class Program
+    public class Program
     {
-
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
-            AuthService authService = new AuthService();
-            new LoginRegisterMenu(authService).Show();
-
-            Console.WriteLine("\r\nThank you for using TEnmo!!!\r\n");
+            CreateWebHostBuilder(args).Build().Run();
         }
+
+        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
+            WebHost.CreateDefaultBuilder(args)
+                .UseStartup<Startup>();
     }
 }
